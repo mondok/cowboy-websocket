@@ -48,6 +48,7 @@ defmodule WebsocketHandler do
     # Reverse the message and use JSX to re-encode a reply contatining
     # the reversed message.
     rev = String.reverse(message)
+    IO.puts rev
     { :ok, reply } = JSX.encode(%{ reply: rev})
 
     #IO.puts("Message: #{message}")

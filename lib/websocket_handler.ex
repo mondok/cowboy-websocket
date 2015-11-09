@@ -41,14 +41,14 @@ defmodule WebsocketHandler do
   # or :reply (to send a message back).  
   def websocket_handle({:text, content}, req, state) do
 
-    # Use JSEX to decode the JSON message and extract the word entered
+    # Use JSX to decode the JSON message and extract the word entered
     # by the user into the variable 'message'.
-    { :ok, %{ "message" => message} } = JSEX.decode(content)
+    { :ok, %{ "message" => message} } = JSX.decode(content)
 
-    # Reverse the message and use JSEX to re-encode a reply contatining
+    # Reverse the message and use JSX to re-encode a reply contatining
     # the reversed message.
     rev = String.reverse(message)
-    { :ok, reply } = JSEX.encode(%{ reply: rev})
+    { :ok, reply } = JSX.encode(%{ reply: rev})
 
     #IO.puts("Message: #{message}")
     
@@ -75,7 +75,7 @@ defmodule WebsocketHandler do
     time = time_as_string()
 
     # encode a json reply in the variable 'message'
-    { :ok, message } = JSEX.encode(%{ time: time})
+    { :ok, message } = JSX.encode(%{ time: time})
 
     
     # set a new timer to send a :timeout message back to this process a second

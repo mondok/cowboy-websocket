@@ -30,7 +30,7 @@ defmodule CowboySocket.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [ { :cowboy, "1.0.3" },
-      { :jsex, "~> 2.0.0" } ]
+      { :exjsx, "~> 3.2.0" } ]
   end
 
 end

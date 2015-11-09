@@ -43,16 +43,15 @@ defmodule WebsocketHandler do
 
     # Use JSX to decode the JSON message and extract the word entered
     # by the user into the variable 'message'.
-    { :ok, %{ "message" => message} } = JSX.decode(content)
+    { :ok, %{ "message" => message, "key" => key} } = JSX.decode(content)
 
     # Reverse the message and use JSX to re-encode a reply contatining
     # the reversed message.
     rev = String.reverse(message)
-    IO.puts rev
+    IO.puts "Message received was message: #{message}, key: #{key}" 
     { :ok, reply } = JSX.encode(%{ reply: rev})
 
-    #IO.puts("Message: #{message}")
-    
+
     # The reply format here is a 4-tuple starting with :reply followed 
     # by the body of the reply, in this case the tuple {:text, reply} 
     {:reply, {:text, reply}, req, state}
